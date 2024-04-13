@@ -1,0 +1,5 @@
+USE EPDriver;
+
+DROP TABLE drivers;
+
+SHOW TABLES;

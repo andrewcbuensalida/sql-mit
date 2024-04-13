@@ -1,0 +1,3 @@
+USE EPDriver;
+
+SHOW TABLES;
