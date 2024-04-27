@@ -1,0 +1,17 @@
+Segment: Generative A.I. technologies can write poetry and computer programs or create images of teddy bears and videos of cartoon characters that look like something from a Hollywood movie.
+Now, new A.I. technology is generating blueprints for microscopic biological mechanisms that can edit your DNA, pointing to a future when scientists can battle illness and diseases with even greater precision and speed than they can today.
+
+Summary: A Berkeley CA startup called Profluent is using an AI technology that is based on the same methods as ChatGPT to generate new gene editors, called OpenCRISPR-1. These gene editors can alter genes that cause hereditary conditions like sickle cell anemia and blindness.
+
+Reference: https://www.nytimes.com/2024/04/22/technology/generative-ai-gene-editing-crispr.html
+
+Regex:
+/\S+/g matches 1 or more not whitespaces, essentially counting the words/ \S is not whitespaces. + is 1 or more of the previous symbol. /g applies to the whole text.
+
+/\b[A-Z][a-zA-Z.]*\b/g matches capitalized words. \b is a word boundary. [] matches the range inside. * matches 0 or more.
+
+/\b[a-zA-Z]{3}\b/g matches words that are 3 characters
+
+/\b(t|c)[^\s]*/g matches words beginning with t or c. | is or. \s matches spaces. ^ in [] matches not in the range.
+
+/\w*(?=,)/g matches words the are followed by , without including the ,. This is called positive lookahead, with the syntax (?=,)

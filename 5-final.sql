@@ -1,13 +1,50 @@
-SELECT * FROM Students WHERE Phone IS NULL;
+USE education;
+SHOW TABLES;
 
-SELECT * FROM Students WHERE FriendID IS NOT NULL;
+SELECT *
+FROM Colleges;
 
-SELECT * FROM Students WHERE Phone IS NULL AND City = 'Denver';
+SELECT *
+FROM Students;
 
-SELECT * FROM Students WHERE LastName LIKE 'D%';
+SELECT City, Region, Country FROM Students WHERE Region = 'FL';
 
-SELECT * FROM Students WHERE Phone LIKE '(207)%' AND Email LIKE '%@msn.com';
+SELECT * FROM Students WHERE BirthDate < '1995-06-01';
 
+SELECT City, Region, Country, CONCAT(City, ', ', Region, ' ', Country) AS Location FROM Students;
+
+SELECT * FROM Students WHERE City IN ('Seattle', 'Miami', 'Chicago');
+
+SELECT * FROM Students 
+WHERE 
+    (Region IN ('WA', 'TN') AND (City != 'New York' OR 
+    CollegeID <= 6 AND BirthDate BETWEEN '1993-01-01' AND '1995-05-01'));
+
+SELECT * FROM Students WHERE Phone IS NOT NULL;
+
+SELECT * FROM Students WHERE FriendID IS NULL;
+
+SELECT * FROM Students 
+WHERE 
+    (Phone LIKE '(415)%' OR Email LIKE '%@apple.com');
+
+SELECT Students.LastName, Students.CollegeID, Colleges.City, Colleges.Region 
+FROM Students 
+JOIN Colleges ON Students.CollegeID = Colleges.CollegeID;
+
+SELECT Students.FirstName, Students.LastName, Students.Email, Students.CollegeID, Colleges.City 
+FROM Students 
+JOIN Colleges ON Students.CollegeID = Colleges.CollegeID;
+
+SELECT Count(*) AS Count, Name
+FROM Colleges
+GROUP BY Name;
+
+SELECT MAX(Students)
+FROM Colleges
+GROUP BY Students;
+
+Colleges
 +-----------+---------------+----------+-------------+--------+---------+
 | CollegeID | Name          | Students | City        | Region | Country |
 +-----------+---------------+----------+-------------+--------+---------+
@@ -33,6 +70,7 @@ SELECT * FROM Students WHERE Phone LIKE '(207)%' AND Email LIKE '%@msn.com';
 |        20 | NYU           |       51 | New York    | NY     | USA     |
 +-----------+---------------+----------+-------------+--------+---------+
 
+Students
 +-----------+-----------+----------+-----------+-----------+------------+--------------------+-----------------+---------------+--------+---------+
 | StudentID | CollegeID | FriendID | FirstName | LastName  | BirthDate  | Email              | Phone           | City          | Region | Country |
 +-----------+-----------+----------+-----------+-----------+------------+--------------------+-----------------+---------------+--------+---------+
@@ -57,3 +95,4 @@ SELECT * FROM Students WHERE Phone LIKE '(207)%' AND Email LIKE '%@msn.com';
 |        19 |         4 |     NULL | Philip    | Cramer    | 1996-07-17 | phil@msn.com       | (207) 4436-6524 | Portland      | ME     | USA     |
 |        20 |         8 |     NULL | Michael   | Holz      | 1996-02-25 | michael@gmail.com  | NULL            | Chicago       | IL     | USA     |
 +-----------+-----------+----------+-----------+-----------+------------+--------------------+-----------------+---------------+--------+---------+
+20 rows in set (0.00 sec)

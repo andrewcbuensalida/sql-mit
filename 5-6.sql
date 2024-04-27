@@ -1,13 +1,24 @@
-SELECT * FROM Students WHERE Phone IS NULL;
+USE education;
 
-SELECT * FROM Students WHERE FriendID IS NOT NULL;
+SELECT *
+FROM Students
+ORDER BY City DESC;
 
-SELECT * FROM Students WHERE Phone IS NULL AND City = 'Denver';
+SELECT *
+FROM Students
+ORDER BY BirthDate, Region;
 
-SELECT * FROM Students WHERE LastName LIKE 'D%';
+SELECT Name, City, Students, Country
+FROM Colleges
+WHERE Country = 'USA' AND Students BETWEEN 21 AND 51
+ORDER BY Students;
 
-SELECT * FROM Students WHERE Phone LIKE '(207)%' AND Email LIKE '%@msn.com';
+SELECT Count(*) AS Count, City 
+FROM Colleges
+GROUP BY City;
 
+
+Colleges
 +-----------+---------------+----------+-------------+--------+---------+
 | CollegeID | Name          | Students | City        | Region | Country |
 +-----------+---------------+----------+-------------+--------+---------+
@@ -33,6 +44,7 @@ SELECT * FROM Students WHERE Phone LIKE '(207)%' AND Email LIKE '%@msn.com';
 |        20 | NYU           |       51 | New York    | NY     | USA     |
 +-----------+---------------+----------+-------------+--------+---------+
 
+Students
 +-----------+-----------+----------+-----------+-----------+------------+--------------------+-----------------+---------------+--------+---------+
 | StudentID | CollegeID | FriendID | FirstName | LastName  | BirthDate  | Email              | Phone           | City          | Region | Country |
 +-----------+-----------+----------+-----------+-----------+------------+--------------------+-----------------+---------------+--------+---------+

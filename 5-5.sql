@@ -1,12 +1,26 @@
-SELECT * FROM Students WHERE Phone IS NULL;
+USE education;
 
-SELECT * FROM Students WHERE FriendID IS NOT NULL;
+SELECT s.FirstName, s.LastName, s.CollegeID, c.City
+FROM Students s
+INNER JOIN Colleges c
+ON s.CollegeID = c.CollegeID;
 
-SELECT * FROM Students WHERE Phone IS NULL AND City = 'Denver';
+SELECT s.LastName, s.CollegeID, c.Name
+FROM Students s
+LEFT JOIN Colleges c
+ON s.CollegeID = c.CollegeID;
 
-SELECT * FROM Students WHERE LastName LIKE 'D%';
+SELECT s.LastName, s.City, c.CollegeID, c.Name
+FROM Students s
+RIGHT JOIN Colleges c
+ON s.CollegeID = c.CollegeID;
 
-SELECT * FROM Students WHERE Phone LIKE '(207)%' AND Email LIKE '%@msn.com';
+SELECT s1.StudentID, s1.FirstName, s1.LastName, s1.FriendID, CONCAT(s2.FirstName, s2.LastName) AS Buddy
+FROM Students s1
+JOIN Students s2
+ON s1.FriendID = s2.StudentID;
+
+Colleges
 
 +-----------+---------------+----------+-------------+--------+---------+
 | CollegeID | Name          | Students | City        | Region | Country |
@@ -32,6 +46,8 @@ SELECT * FROM Students WHERE Phone LIKE '(207)%' AND Email LIKE '%@msn.com';
 |        19 | Tufts         |       11 | Medford     | MA     | USA     |
 |        20 | NYU           |       51 | New York    | NY     | USA     |
 +-----------+---------------+----------+-------------+--------+---------+
+
+Students
 
 +-----------+-----------+----------+-----------+-----------+------------+--------------------+-----------------+---------------+--------+---------+
 | StudentID | CollegeID | FriendID | FirstName | LastName  | BirthDate  | Email              | Phone           | City          | Region | Country |
