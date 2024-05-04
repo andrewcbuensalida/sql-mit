@@ -1,1 +1,4 @@
 week-6\cleaning-data-in-sql\.guides
+
+.env
+secrets.yaml
